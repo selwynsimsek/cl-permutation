@@ -20,8 +20,7 @@
 
 (defun iota-vector (n)
   "Generate the equivalent of (COERCE (IOTA N) 'VECTOR)."
-  (loop :with a := (make-array n :element-type 'vector-index
-                                 :initial-element 0)
+  (loop :with a := (allocate-perm-vector (1- n))
         :for i :below n
         :do (setf (aref a i) i)
         :finally (return a)))

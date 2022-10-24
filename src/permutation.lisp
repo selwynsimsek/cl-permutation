@@ -16,7 +16,7 @@
 
 (deftype raw-perm ()
   "Type defining the internal representation of a perm."
-  `(simple-array perm-element (*)))
+  `(simple-array fixnum (*)))
 
 (defstruct (perm (:conc-name perm.)
                  (:print-function print-perm)
@@ -99,6 +99,10 @@
 (defun allocate-perm-vector (n)
   "Allocate a vector compatible with a size-N permutation."
   (make-array (1+ n) :element-type 'perm-element
+                     :adjustable nil
+                     :fill-pointer nil
+                     :element-type nil
+                     :displaced-to nil
                      :initial-element 0))
 
 
